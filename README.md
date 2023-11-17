@@ -168,7 +168,7 @@ iface eth0 inet static
 ```
 ### `Heiter.sh`
 
-### Result 
+### Hasil 
 (hasil ping)
 
 ## Soal 2 - 5 
@@ -229,44 +229,44 @@ listen-on-v6 { any; };
 > Pada masing-masing worker PHP, lakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3.
 
 
-### Result
+### Hasil
 
 
 ## Soal 7 
 > Kepala suku dari Bredt Region memberikan resource server sebagai berikut: Lawine, 4GB, 2vCPU, dan 80 GB SSD. Linie, 2GB, 2vCPU, dan 50 GB SSD. Lugner 1GB, 1vCPU, dan 25 GB SSD. aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second.
 
 
-### Result 
+### Hasil 
 
 ## Soal 8 
 > Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: Nama Algoritma Load Balancer, Report hasil testing pada Apache Benchmark, Grafik request per second untuk masing masing algoritma, Analisis 
 
 
-### Result 
+### Hasil 
 
 
 ## Soal 9
 > Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.
 
-### Result 
+### Hasil 
 
 
 ## Soal 10
 > Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/
 
-### Result 
+### Hasil 
 
 
 ## Soal 11
 > Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. hint: (proxy_pass)
 
-### Result 
+### Hasil 
 
 
 ## Soal 12
 > Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. hint: (fixed in dulu clinetnya)
 
-### Result 
+### Hasil 
 
 
 ## Soal 13
@@ -297,7 +297,7 @@ skip-bind-address' > /etc/mysql/my.cnf
 service mysql restart
 ```
 
-### Result 
+### Hasil 
 Jalankan Perintah `mariadb --host=192.238.2.2 --port=3306 --user=kelompokit10 --password=passwordit10`, lalu `SHOW DATABASES;` pada worker.
 
 <a href="https://ibb.co/3WnZ6KN"><img src="https://i.ibb.co/ctjnfqF/Nomer13.jpg" alt="Nomer13" border="0"></a>
@@ -462,7 +462,7 @@ service nginx restart
 ```
 catatan: sesuaikan port untuk masing masing worker sesuai dengan ketentuan soal
 
-### Result 
+### Hasil 
 Jalankan perintah `lynx localhost:8001` pada worker 
 
 <a href="https://ibb.co/BB3MYBS"><img src="https://i.ibb.co/Wf5JRfY/Nomer14.jpg" alt="Nomer14" border="0"></a>
@@ -478,7 +478,7 @@ echo '{
 }' > register.json 
 ```
 
-### Result 
+### Hasil 
 Jalankan perintah `ab -n 100 -c 10 -p register.json -T application/json http://192.238.4.2:8001/api/auth/register` pada `client`
 
 <a href="https://ibb.co/Smnsf9v"><img src="https://i.ibb.co/09MDsdJ/Nomer15.jpg" alt="Nomer15" border="0"></a>
@@ -494,7 +494,7 @@ echo '{
 }' > login.json 
 ```
 
-### Result 
+### Hasil 
 Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://192.238.4.2:8001/api/auth/login` pada `client`
 
 <a href="https://ibb.co/W6f9LRW"><img src="https://i.ibb.co/FKzvFdb/Nomer16.jpg" alt="Nomer16" border="0"></a>
@@ -508,7 +508,7 @@ curl -X POST -H "Content-Type: application/json" -d @login.json http://192.238.4
 token=$(cat login_output.txt | jq -r '.token')
 ```
 
-### Result 
+### Hasil 
 Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.238.4.2:8001/api/me` pada client 
 
 <a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/WB5ndNF/Nomer17.jpg" alt="Nomer17" border="0"></a>
@@ -516,14 +516,14 @@ Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.
 ## Soal 18
 > Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
 
-### Result 
+### Hasil 
 
 
 ## Soal 19
 > Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan: pm.max_children, pm.start_servers, pm.min_spare_servers, pm.max_spare_servers. Sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
 
 
-### Result 
+### Hasil 
 
 
 ## Soal 20
@@ -531,7 +531,7 @@ Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.
 
 
 
-### Result 
+### Hasil 
 
 
 
