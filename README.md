@@ -1,9 +1,12 @@
 # Jarkom-Modul-3-IT10-2023
 
-# Praktikum Jaringan Komputer Modul 3 - IT10
+**Praktikum Jaringan Komputer Modul 3 - IT10**
 
 ## Topologi 
+
 <a href="https://ibb.co/zNTqmsv"><img src="https://i.ibb.co/DLH0142/Topologi.jpg" alt="Topologi" border="0"></a>
+
+## Configuration 
 
 ## Soal 1 
 >Lakukan konfigurasi sesuai dengan peta yang sudah diberikan.
@@ -297,7 +300,7 @@ service mysql restart
 ### Result 
 Jalankan Perintah `mariadb --host=192.238.2.2 --port=3306 --user=kelompokit10 --password=passwordit10`, lalu `SHOW DATABASES;` pada worker.
 
-<a href="https://ibb.co/3WnZ6KN"><img src="https://i.ibb.co/3WnZ6KN/Nomer13.jpg" alt="Nomer13" border="0"></a> 
+<a href="https://ibb.co/3WnZ6KN"><img src="https://i.ibb.co/ctjnfqF/Nomer13.jpg" alt="Nomer13" border="0"></a>
 
 ## Soal 14
 > Frieren, Flamme, dan Fern memiliki Riegel Channel sesuai dengan quest guide berikut. Jangan lupa melakukan instalasi PHP8.0 dan Composer
@@ -462,7 +465,7 @@ catatan: sesuaikan port untuk masing masing worker sesuai dengan ketentuan soal
 ### Result 
 Jalankan perintah `lynx localhost:8001` pada worker 
 
-<a href="https://ibb.co/BB3MYBS"><img src="https://i.ibb.co/BB3MYBS/Nomer14.jpg" alt="Nomer14" border="0"></a>
+<a href="https://ibb.co/BB3MYBS"><img src="https://i.ibb.co/Wf5JRfY/Nomer14.jpg" alt="Nomer14" border="0"></a>
 
 ## Soal 15
 > Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second untuk `POST /auth/register` . Tambahkan response dan hasil testing pada grimoire.
@@ -478,7 +481,7 @@ echo '{
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -p register.json -T application/json http://192.238.4.2:8001/api/auth/register` pada `client`
 
-<a href="https://ibb.co/Smnsf9v"><img src="https://i.ibb.co/Smnsf9v/Nomer15.jpg" alt="Nomer15" border="0"></a>
+<a href="https://ibb.co/Smnsf9v"><img src="https://i.ibb.co/09MDsdJ/Nomer15.jpg" alt="Nomer15" border="0"></a>
 
 ## Soal 16
 > Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second untuk `POST /auth/login` . Tambahkan response dan hasil testing pada grimoire.
@@ -494,7 +497,7 @@ echo '{
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://192.238.4.2:8001/api/auth/login` pada `client`
 
-<a href="https://ibb.co/W6f9LRW"><img src="https://i.ibb.co/W6f9LRW/Nomer16.jpg" alt="Nomer16" border="0"></a>
+<a href="https://ibb.co/W6f9LRW"><img src="https://i.ibb.co/FKzvFdb/Nomer16.jpg" alt="Nomer16" border="0"></a>
 
 ## Soal 17 
 > Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second untuk `GET /me` . Tambahkan response dan hasil testing pada grimoire.
@@ -508,7 +511,7 @@ token=$(cat login_output.txt | jq -r '.token')
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.238.4.2:8001/api/me` pada client 
 
-<a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/CV8BXpv/Nomer17.jpg" alt="Nomer17" border="0"></a>
+<a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/WB5ndNF/Nomer17.jpg" alt="Nomer17" border="0"></a>
 
 ## Soal 18
 > Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
