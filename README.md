@@ -87,7 +87,7 @@ iface eth0 inet static
 	gateway 192.238.1.1
 ```
 
-# Denken
+Denken
 ```
 #Static config for eth0
 auto eth0
