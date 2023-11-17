@@ -296,6 +296,7 @@ service mysql restart
 
 ### Result 
 Jalankan Perintah `mariadb --host=192.238.2.2 --port=3306 --user=kelompokit10 --password=passwordit10`, lalu `SHOW DATABASES;` pada worker.
+
 <a href="https://ibb.co/3WnZ6KN"><img src="https://i.ibb.co/3WnZ6KN/Nomer13.jpg" alt="Nomer13" border="0"></a> 
 
 ## Soal 14
@@ -460,6 +461,7 @@ catatan: sesuaikan port untuk masing masing worker sesuai dengan ketentuan soal
 
 ### Result 
 Jalankan perintah `lynx localhost:8001` pada worker 
+
 <a href="https://ibb.co/BB3MYBS"><img src="https://i.ibb.co/BB3MYBS/Nomer14.jpg" alt="Nomer14" border="0"></a>
 
 ## Soal 15
@@ -475,6 +477,7 @@ echo '{
 
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -p register.json -T application/json http://192.238.4.2:8001/api/auth/register` pada `client`
+
 <a href="https://ibb.co/Smnsf9v"><img src="https://i.ibb.co/Smnsf9v/Nomer15.jpg" alt="Nomer15" border="0"></a>
 
 ## Soal 16
@@ -490,6 +493,7 @@ echo '{
 
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://192.238.4.2:8001/api/auth/login` pada `client`
+
 <a href="https://ibb.co/W6f9LRW"><img src="https://i.ibb.co/W6f9LRW/Nomer16.jpg" alt="Nomer16" border="0"></a>
 
 ## Soal 17 
@@ -503,6 +507,7 @@ token=$(cat login_output.txt | jq -r '.token')
 
 ### Result 
 Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.238.4.2:8001/api/me` pada client 
+
 <a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/CV8BXpv/Nomer17.jpg" alt="Nomer17" border="0"></a>
 
 ## Soal 18
