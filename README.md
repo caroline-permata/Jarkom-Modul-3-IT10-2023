@@ -2,7 +2,7 @@
 
 **Praktikum Jaringan Komputer Modul 3 - IT10**
 
-## Topologi 
+## Topologi
 
 <a href="https://ibb.co/zNTqmsv"><img src="https://i.ibb.co/DLH0142/Topologi.jpg" alt="Topologi" border="0"></a>
 
