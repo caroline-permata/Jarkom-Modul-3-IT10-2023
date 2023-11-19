@@ -66,6 +66,7 @@ www     IN      CNAME   granz.channel.it10.com.' > /etc/bind/implementasi/granz.
 
 ### Testing
 Untuk melakukan testing, jalankan perintah `PING riegel.canyon.it10.com` dan `PING granz.channel.it10.com` pada Client 
+
 Testing Riegel
 
 <a href="https://ibb.co/5cqQgGy"><img src="https://i.ibb.co/MNqzxZ4/Nomer0-1.jpg" alt="Nomer0-1" border="0"></a>
