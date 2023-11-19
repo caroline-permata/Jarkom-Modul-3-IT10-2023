@@ -8,6 +8,72 @@
 
 ## Configuration 
 
+## Nomer 0
+>Kali ini, kalian diminta untuk melakukan register domain berupa riegel.canyon.yyy.com untuk worker Laravel dan granz.channel.yyy.com untuk worker PHP (0) mengarah pada worker
+
+Untuk melakukan hal tersebut, lakukan perintah dibawah ini pada `DNS Server` atau `Heiter`
+```
+# Edit named.conf.local
+echo 'zone "riegel.canyon.it10.com" {
+    type master;
+    file "/etc/bind/implementasi/riegel.canyon.it10.com";
+};
+
+zone "granz.channel.it10.com" {
+    type master;
+    file "/etc/bind/implementasi/granz.channel.it10.com";
+};' > /etc/bind/named.conf.local
+
+# Membuat folder implementasi di dalam /etc/bind
+mkdir /etc/bind/implementasi
+
+# Menyalin file db.local
+cp /etc/bind/db.local /etc/bind/implementasi/riegel.canyon.it10.com
+cp /etc/bind/db.local /etc/bind/implementasi/granz.channel.it10.com
+
+# Edit file /etc/bind/implementasi/riegel.canyon.it10.com
+echo ';
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     riegel.canyon.it10.com. root.riegel.canyon.it10.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      riegel.canyon.it10.com.
+@       IN      A       192.238.2.3 ; antara load balancer/PHP/DNS
+www     IN      CNAME   riegel.canyon.it10.com.' > /etc/bind/implementasi/riegel.canyon.it10.com
+
+# Edit file /etc/bind/implementasi/granz.channel.it10.com
+echo ';
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     granz.channel.it10.com. root.granz.channel.it10.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      granz.channel.it10.com.
+@       IN      A       192.238.2.3
+www     IN      CNAME   granz.channel.it10.com.' > /etc/bind/implementasi/granz.channel.it10.com
+```
+
+### Testing
+Untuk melakukan testing, jalankan perintah `PING riegel.canyon.it10.com` dan `PING granz.channel.it10.com` pada Client 
+Testing Riegel
+
+<a href="https://ibb.co/5cqQgGy"><img src="https://i.ibb.co/MNqzxZ4/Nomer0-1.jpg" alt="Nomer0-1" border="0"></a>
+
+Testing Granz
+
+<a href="https://ibb.co/LrddrKW"><img src="https://i.ibb.co/68008Qx/Nomer0-2.jpg" alt="Nomer0-2" border="0"></a>
+
 ## Nomer 1 
 >Lakukan konfigurasi sesuai dengan peta yang sudah diberikan.
 ### Configuration Dynamic
