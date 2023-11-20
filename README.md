@@ -849,6 +849,9 @@ Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.
 
 <a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/WB5ndNF/Nomer17.jpg" alt="Nomer17" border="0"></a>
 
+## Nomer 18
+> Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
+
 Untuk memastikan ketiga worker bekerja secara adil, masukkan perintah pada `Load Balancer` atau `Eisen` 
 ```
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
@@ -877,24 +880,72 @@ server {
 service nginx restart
 ```
 
-### Result 
+### Hasil 
 Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://granz.channel.it10.com/api/auth/login ` pada client 
 
-
+<a href="https://ibb.co/GcLVnfK"><img src="https://i.ibb.co/jg2Lb9c/Nomer18.jpg" alt="Nomer18" border="0"></a>
 
 ## Nomer 19
 > Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan: pm.max_children, pm.start_servers, pm.min_spare_servers, pm.max_spare_servers. Sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
 
+Untuk meningkatkan performa dan melakukan implementasi tersebut, tambahkan barisan perintah pada `Load Balancer` atau `Eisen`
+
+```
+server {
+    listen 80;
+
+    location /app1 {
+        proxy_pass http://192.238.4.2/;
+        proxy_bind 192.238.4.2; #IP Fern
+        rewrite ^/app1(.*)$ http://192.238.4.2/$1 permanent;
+    }
+
+    location /app2 {
+        proxy_pass http://192.238.4.3/;
+        proxy_bind 192.238.4.3; #IP Flamme
+        rewrite ^/app2(.*)$ http://192.238.4.3/$1 permanent;
+    }
+
+    location /app3 {
+        proxy_pass http://192.238.4.4/;
+        proxy_bind 192.238.4.4; #IP Frieren
+        rewrite ^/app3(.*)$ http://192.238.4.4/$1 permanent;
+    }
+
+    error_log /var/log/nginx/lb_error.log;
+    access_log /var/log/nginx/lb_access.log;
+}' >/etc/nginx/sites-available/proxy-bind
+```
+Jangan lupa untuk melakukan restart nginx
 
 ### Hasil 
+Jalankan 3 konfigurasi yang berbeda pada `/etc/php/8.0/fpm/pool.d/www.conf`, restart `php8.0-fpm`. Kemudian jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://riegel.canyon.it10.com/api/auth/login` pada client dan perintah `htop` pada workers
+
+Percobaan 1
+
+<a href="https://ibb.co/jWJMcxH"><img src="https://i.ibb.co/QCDN2qX/Nomer19-1.jpg" alt="Nomer19-1" border="0"></a>
+
+Percobaan 2
+
+<a href="https://ibb.co/wrCcwZS"><img src="https://i.ibb.co/jZGJW9y/Nomer19-2.jpg" alt="Nomer19-2" border="0"></a>
+
+Percobaan 3
+
+<a href="https://ibb.co/CmxC1FC"><img src="https://i.ibb.co/YPvnRGn/Nomer19-3.jpg" alt="Nomer19-3" border="0"></a>
 
 
 ## Nomer 20
 > Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Eisen. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second. 
 
-
+Pada nomor sebelumnya, telah di tambahkan konfigurasi untuk proxy bind pada nginx, namun untuk mengimplementasikan least conn, tambahkan konfigurasi dibawah ini pada `Load Balancer` atau `Eisen` pada bagian yang sama 
+```
+        proxy_pass http://laravel_least_conn;
+        proxy_set_header    X-Real-IP $remote_addr;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Host $http_host;
+```
 
 ### Hasil 
+Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://192.238.2.3/api/auth/login` 
 
-
-
+<a href="https://ibb.co/5Y08tDj"><img src="https://i.ibb.co/LQFtbwg/Nomer20.jpg" alt="Nomer20" border="0"></a>
