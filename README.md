@@ -418,11 +418,9 @@ Jalankan perintah berikut pada client `Revolte`
 ```
 ab -n 1000 -c 100 http://www.granz.channel.it10.com/
 ```
-![no7](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/b8186018-336c-439e-ae81-88504935aa46)
+![no7A](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/3de55a24-4c97-42c3-8879-2e08946d0518)
 dan waktu yang dihasilkan adalah `Requests per second:    2009.78 [#/sec] (mean)` selanjutnya dibutuhkan adalah sebagai berikut
-![no7B](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/a71d35e4-bca7-4b40-822d-08cac2941594)
-
-
+![NO7b](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/28985536-8747-4002-9c04-d87b1c480e0d)
 ## Nomer 8 
 > Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: Nama Algoritma Load Balancer, Report hasil testing pada Apache Benchmark, Grafik request per second untuk masing masing algoritma, Analisis
 
@@ -435,7 +433,7 @@ ab -n 200 -c 10 http://www.granz.channel.it10.com/
 ```
  ### Hasil 
  ### Round Robin
- ![no8 round robin](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/456bd217-af91-4299-a989-7fe48bc40aec)
+ ![no8round robin](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/c4d94ccf-be8b-4cb7-a4e6-cf5376a86c18)
 
  ### Least-connection
  ![least connect](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/d6d6df58-511a-4c11-b739-a95798b576e1)
@@ -508,9 +506,9 @@ location ~ /its {
 ```
 ```
 echo 'upstream worker {
-    server 192.234.3.2;
-    server 192.234.3.3;
-    server 192.234.3.4;
+    server 192.238.3.2;
+    server 192.238.3.3;
+    server 192.238.3.4;
 }
 
 server {
