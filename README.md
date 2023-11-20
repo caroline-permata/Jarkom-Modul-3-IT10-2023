@@ -336,22 +336,103 @@ service nginx restart
 ### Hasil
 Jalankan Perintah `lynx localhost` pada masing-masing worker dan hasilnya akan sebagai berikut:
 
+`pada lugner`
+<img width="1440" alt="no6 lugner" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/c917a856-eb2e-4e11-9a0a-f11495e30985">
+`pada linie`
+<img width="1440" alt="no6 linie" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/8270c0af-de39-4758-90df-2945e58a70fe">
 `pada lawine`
-
-
+<img width="1440" alt="no6 lawine" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/89414580-702b-4386-b0ea-bb461fef9f41">
 
 
 ## Nomer 7 
 > Kepala suku dari Bredt Region memberikan resource server sebagai berikut: Lawine, 4GB, 2vCPU, dan 80 GB SSD. Linie, 2GB, 2vCPU, dan 50 GB SSD. Lugner 1GB, 1vCPU, dan 25 GB SSD. aturlah agar Eisen dapat bekerja dengan maksimal, lalu lakukan testing dengan 1000 request dan 100 request/second.
 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Setelah melakukan konfigurasi diatas, sekarang lakukan konfigurasi Load Balancing pada node `Eisen` sebagai berikut
 
+### Script
+Sebelum melakukan setup soal 7. Buka kembali Node `DNS Server` dan arahkan `domain` tersebut pada `IP Load Balancer Eisen`
+```
+echo ';
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     riegel.canyon.it10.com. root.riegel.canyon.it10.com. (
+                        2023111401      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      riegel.canyon.it10.com.
+@       IN      A       192.238.2.2     ; IP LB Eiken
+www     IN      CNAME   riegel.canyon.it10.com.' > /etc/bind/jarkom/riegel.canyon.it10.com
+
+echo '
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     granz.channel.it10.com. root.granz.channel.it10.com. (
+                        2023111401      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      granz.channel.it10.com.
+@       IN      A       192.238.2.2     ; IP LB Eiken
+www     IN      CNAME   granz.channel.it10.com.' > /etc/bind/jarkom/granz.channel.it10.com 
+```
+Lalu kembali ke node `Eisen` dan lakukan konfigurasi pada nginx sebagai berikut
+```
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/lb_php
+
+echo ' upstream worker {
+    server 192.238.3.1;
+    server 192.238.3.2;
+    server 192.238.3.3;
+}
+
+server {
+    listen 80;
+    server_name granz.channel.it10.com www.granz.channel.it10.com;
+
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        proxy_pass http://worker;
+    }
+} ' > /etc/nginx/sites-available/lb_php
+
+ln -s /etc/nginx/sites-available/lb_php /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+service nginx restart
+```
+Setelah itu lakukan konfigurasi pada salah satu client. Disini kami melakukan konfigurasi pada client `Revolte`
 ### Hasil 
+Jalankan perintah berikut pada client `Revolte`
+```
+ab -n 1000 -c 100 http://www.granz.channel.it10.com/
+```
+<img width="695" alt="no7" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/82cc7fac-569e-4e20-93b8-c43f960e0099">
 
 ## Nomer 8 
-> Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: Nama Algoritma Load Balancer, Report hasil testing pada Apache Benchmark, Grafik request per second untuk masing masing algoritma, Analisis 
+> Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: Nama Algoritma Load Balancer, Report hasil testing pada Apache Benchmark, Grafik request per second untuk masing masing algoritma, Analisis
 
-
-### Hasil 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Selebihnya untuk konfigurasinya sama dengan Soal 7
+Untuk laporan `grimoire` nya kami membuatnya di google.docs pada link ini.
+### Script
+Jalankan command berikut pada client `Revolte`
+```
+ab -n 200 -c 10 http://www.granz.channel.it10.com/
+```
+ ### Hasil 
+ Round Robin
+ <img width="700" alt="no8 round robin" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/90d003e4-9294-48b7-ac5d-ecb44b87011e">
 
 
 ## Nomer 9
