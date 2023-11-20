@@ -849,10 +849,37 @@ Jalankan perintah `ab -n 100 -c 10 -H "Authorization: Bearer $token" http://192.
 
 <a href="https://ibb.co/CV8BXpv"><img src="https://i.ibb.co/WB5ndNF/Nomer17.jpg" alt="Nomer17" border="0"></a>
 
-## Nomer 18
-> Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
+Untuk memastikan ketiga worker bekerja secara adil, masukkan perintah pada `Load Balancer` atau `Eisen` 
+```
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
 
-### Hasil 
+apt-get update
+apt-get install mariadb-client -y
+apt-get install nginx -y
+
+echo 'upstream worker {
+    least_conn;
+    server 192.173.4.1:8001;
+    server 192.173.4.2:8002;
+    server 192.173.4.3:8003;
+}
+
+server {
+    listen 80;
+    server_name riegel.canyon.a09.com www.riegel.canyon.a09.com;
+
+    location / {
+        proxy_pass http://worker;
+    }
+} 
+' > /etc/nginx/sites-available/laravel-worker
+
+service nginx restart
+```
+
+### Result 
+Jalankan perintah `ab -n 100 -c 10 -p login.json -T application/json http://granz.channel.it10.com/api/auth/login ` pada client 
+
 
 
 ## Nomer 19
