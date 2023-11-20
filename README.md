@@ -418,7 +418,10 @@ Jalankan perintah berikut pada client `Revolte`
 ```
 ab -n 1000 -c 100 http://www.granz.channel.it10.com/
 ```
-<img width="695" alt="no7" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/82cc7fac-569e-4e20-93b8-c43f960e0099">
+![no7](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/b8186018-336c-439e-ae81-88504935aa46)
+dan waktu yang dihasilkan adalah `Requests per second:    2009.78 [#/sec] (mean)` selanjutnya dibutuhkan adalah sebagai berikut
+![no7B](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/a71d35e4-bca7-4b40-822d-08cac2941594)
+
 
 ## Nomer 8 
 > Karena diminta untuk menuliskan grimoire, buatlah analisis hasil testing dengan 200 request dan 10 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut: Nama Algoritma Load Balancer, Report hasil testing pada Apache Benchmark, Grafik request per second untuk masing masing algoritma, Analisis
@@ -432,10 +435,10 @@ ab -n 200 -c 10 http://www.granz.channel.it10.com/
 ```
  ### Hasil 
  ### Round Robin
- <img width="700" alt="no8 round robin" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/90d003e4-9294-48b7-ac5d-ecb44b87011e">
+ ![no8 round robin](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/456bd217-af91-4299-a989-7fe48bc40aec)
 
  ### Least-connection
- ![no8 least connect](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/9f9b4f78-8775-4f07-8db4-9b2782e4b1be)
+ ![least connect](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/d6d6df58-511a-4c11-b739-a95798b576e1)
 
 ### IP Hash
 ![no8 ip hash](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ceed3f4b-9c2f-4368-be98-7808dd149483)
@@ -461,7 +464,7 @@ ab -n 100 -c 10 http://www.granz.channel.it10.com/
  ![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
 > Request per second 2762.43 [#/sec] (mean)
 ### 2 worker
-![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/0fcf83fb-7df9-4a1f-87c0-0b61ca7fa05a)
+![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/23e4be5a-1770-449a-ae42-d15e1739a49c)
 > quest per second 3332.89 [#/sec] (mean)
 ### 3 worker
 ![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
