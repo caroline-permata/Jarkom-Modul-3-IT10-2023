@@ -463,7 +463,7 @@ ab -n 100 -c 10 http://www.granz.channel.it10.com/
 > Request per second 2762.43 [#/sec] (mean)
 ### 2 worker
 ![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/989be6c5-ae6c-4b58-90eb-b957354904d9)
-> quest per second 3332.89 [#/sec] (mean)
+> quest per second 4248.54 [#/sec] (mean)
 ### 3 worker
 ![no9 3 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/18ce87e7-5e19-4813-a6e7-9333a3cd85cb)
 > Request per second 3104.92 [#/sec] (mean)
