@@ -431,33 +431,178 @@ Jalankan command berikut pada client `Revolte`
 ab -n 200 -c 10 http://www.granz.channel.it10.com/
 ```
  ### Hasil 
- Round Robin
+ ### Round Robin
  <img width="700" alt="no8 round robin" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/90d003e4-9294-48b7-ac5d-ecb44b87011e">
+
+ ### Least-connection
+ ![no8 least connect](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/9f9b4f78-8775-4f07-8db4-9b2782e4b1be)
+
+### IP Hash
+![no8 ip hash](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ceed3f4b-9c2f-4368-be98-7808dd149483)
+
+### Generic Hash
+![no8 generic hash](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/abbfcbd3-7e9e-4400-914e-8a18843a401f)
+
+### Grafik
+![no8 grafik](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/0690fd8a-f027-41e5-9ff0-2c1059cec27f)
 
 
 ## Nomer 9
 > Dengan menggunakan algoritma Round Robin, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 100 request dengan 10 request/second, kemudian tambahkan grafiknya pada grimoire.
 
-### Hasil 
-
-
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Setelah melakukan setup pada node `Eisen` sekarang lakukan testing pada load balancer yang telah dibuat sebelumnya. Yang menjadi pembeda adalah kita harus melakukan testing menggunakan `1 worker`, `2 worker`, dan `3 worker`.
+### Script
+Jalankan command berikut pada client `Revolte`
+```
+ab -n 100 -c 10 http://www.granz.channel.it10.com/
+```
+ ### Hasil 
+ ### 1 worker
+ ![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
+> Request per second 2762.43 [#/sec] (mean)
+### 2 worker
+![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/0fcf83fb-7df9-4a1f-87c0-0b61ca7fa05a)
+> quest per second 3332.89 [#/sec] (mean)
+### 3 worker
+![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
+> Request per second 3104.92 [#/sec] (mean)
+### Grafik
+![no9 grafik](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/d7a5d8c4-647e-44ec-810b-afb2e300ca10)
+ 
 ## Nomer 10
 > Selanjutnya coba tambahkan konfigurasi autentikasi di LB dengan dengan kombinasi username: “netics” dan password: “ajkyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/rahasisakita/
 
-### Hasil 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Setelah itu, lakukan beberapa konfigurasi sebagai berikut
+### Script
+
+```
+mkdir /etc/nginx/rahasisakita
+htpasswd -c /etc/nginx/rahasisakita/htpasswd netics
+```
+Lalu, masukkan passwordnya `ajkit10`
+Jika sudah memasukkan `password` dan `re-type password`. Sekarang bisa dicoba dengan menambahkan command berikut pada setup nginx.
+```
+auth_basic "Restricted Content";
+auth_basic_user_file /etc/nginx/rahasisakita/htpasswd;
+```
+### Hasil
+![no10](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/aca099a2-6ffc-4f32-8159-2274ea40dccb)
 
 
 ## Nomer 11
 > Lalu buat untuk setiap request yang mengandung /its akan di proxy passing menuju halaman https://www.its.ac.id. hint: (proxy_pass)
 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Setelah itu, lakukan beberapa konfigurasi tambahan pada nginx sebagai berikut
+### Script
+```
+location ~ /its {
+    proxy_pass https://www.its.ac.id;
+    proxy_set_header Host www.its.ac.id;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+```
+echo 'upstream worker {
+    server 192.234.3.2;
+    server 192.234.3.3;
+    server 192.234.3.4;
+}
+
+server {
+    listen 80;
+    server_name granz.channel.it10.com www.granz.channel.it10.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        proxy_pass http://worker;
+    }
+
+    location ~ /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}' > /etc/nginx/sites-available/lb_php
+```
+ketika kita melakukan akses pada endpoint yang mengandung /its akan diarahkan oleh `proxy_pass` menuju `https://www.its.ac.id.` Jadi ketika melakukan testing pada client `Revolte` dengan menggunakan perintah berikut
+```
+lynx www.granz.channel.it10.com/its
+```
 ### Hasil 
+![no11](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/bf923636-404b-439a-890f-6c3f4a618d0b)
 
 
 ## Nomer 12
 > Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].3.69, [Prefix IP].3.70, [Prefix IP].4.167, dan [Prefix IP].4.168. hint: (fixed in dulu clinetnya)
 
-### Hasil 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu. Setelah itu, Kami hanya menambahkan beberapa konfigurasi di nginx sebagai berikut
+### Script
+```
+location / {
+    allow 192.238.3.69;
+    allow 192.238.3.70;
+    allow 192.238.4.167;
+    allow 192.238.4.168;
+    deny all;
+    proxy_pass http://worker;
+}
+```
+```
+echo 'upstream worker {
+    server 192.238.3.1;
+    server 192.238.3.2;
+    server 192.238.3.3;
+}
 
+server {
+    listen 80;
+    server_name granz.channel.it10.com www.granz.channel.it10.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        allow 192.238.3.69;
+        allow 192.238.3.70;
+        allow 192.238.4.167;
+        allow 192.238.4.168;
+        deny all;
+        proxy_pass http://worker;
+    }
+
+    location /its {
+        proxy_pass https://www.its.ac.id;
+        proxy_set_header Host www.its.ac.id;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}' > /etc/nginx/sites-available/lb_php
+```
+Disini kami hanya mengizinkan beberapa `IP` saja sesuai dengan ketentuan soal dan akan menolak seluruh `IP` selain yang telah ditentukan di soal. Untuk melakukan testingnya. Bisa dilakukan dengan membuka client yang mendapatkan `IP` `192.238.3.69` atau `192.238.3.70` atau `192.238.4.167` atau `192.238.4.168`
+### Hasil 
+### IP Deny
+![no12  IP deny](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/4990ad2e-b162-43bd-963d-69e537c7b579)
+### IP Allow
+Karena IP yang diberikan random, selanjutnya akan melakukan tambahan allow pada IP 192.238.3.19 pada konfigurasi sebelumnya
+```
+location / {
+    allow 192.238.3.69;
+    allow 192.238.3.70;
+    allow 192.238.3.19;
+    allow 192.238.4.167;
+    allow 192.238.4.168;
+    deny all;
+    proxy_pass http://worker;
+}
+```
+<img width="1440" alt="no6 lugner" src="https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/c917a856-eb2e-4e11-9a0a-f11495e30985">
 
 ## Nomer 13
 > Semua data yang diperlukan, diatur pada Denken dan harus dapat diakses oleh Frieren, Flamme, dan Fern. 
