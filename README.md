@@ -459,13 +459,13 @@ ab -n 100 -c 10 http://www.granz.channel.it10.com/
 ```
  ### Hasil 
  ### 1 worker
- ![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
+ ![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/0eca67fe-2349-452a-805c-2972746a2fc5)
 > Request per second 2762.43 [#/sec] (mean)
 ### 2 worker
-![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/23e4be5a-1770-449a-ae42-d15e1739a49c)
+![no9 2 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/989be6c5-ae6c-4b58-90eb-b957354904d9)
 > quest per second 3332.89 [#/sec] (mean)
 ### 3 worker
-![no9 1 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/ea5915a3-ccaf-4ece-b169-d071218825ae)
+![no9 3 worker](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/18ce87e7-5e19-4813-a6e7-9333a3cd85cb)
 > Request per second 3104.92 [#/sec] (mean)
 ### Grafik
 ![no9 grafik](https://github.com/caroline-permata/Jarkom-Modul-3-IT10-2023/assets/113564685/d7a5d8c4-647e-44ec-810b-afb2e300ca10)
