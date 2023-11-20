@@ -295,8 +295,50 @@ listen-on-v6 { any; };
 ## Nomer 6
 > Pada masing-masing worker PHP, lakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3.
 
+Sebelum mengerjakan perlu untuk melakukan setup terlebih dahulu pada seluruh PHP Worker. Jika sudah, silahkan untuk melakukan konfigurasi tambahan sebagai berikut untuk melakukan download dan unzip menggunakan command `wget`
+``` 
+wget -O '/var/www/granz.channel.it10.com' 'https://drive.google.com/u/0/uc?id=1ViSkRq7SmwZgdK64eRbr5Fm1EGCTPrU1&export=download'
+unzip -o /var/www/granz.channel.it10.com -d /var/www/
+rm /var/www/granz.channel.it02.com
+mv /var/www/modul-3 /var/www/granz.channel.it10.com
+
+```
+### Script
+Setelah melakukan download dan unzip. Sekarang kita bisa melakukan konfigurasi pada `nginx` sebagai berikut:
+``` 
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/granz.channel.it10.com
+ln -s /etc/nginx/sites-available/granz.channel.it10.com /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+echo 'server {
+    listen 80;
+    server_name _;
+
+    root /var/www/granz.channel.it10.com;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.3-fpm.sock;  # Sesuaikan versi PHP dan socket
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}' > /etc/nginx/sites-available/granz.channel.it10.com
+
+service nginx restart
+
+```
 
 ### Hasil
+Jalankan Perintah `lynx localhost` pada masing-masing worker dan hasilnya akan sebagai berikut:
+
+`pada lawine`
+
+
 
 
 ## Nomer 7 
